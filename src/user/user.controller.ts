@@ -8,7 +8,6 @@ import {
   // Delete,
 } from '@nestjs/common';
 import { IUser, UserService } from './user.service';
-import { User as UserModel } from '@prisma/client';
 import { HttpErrorByCode } from '@nestjs/common/utils/http-error-by-code.util';
 
 @Controller('user')
@@ -33,6 +32,9 @@ export class UserController {
     const user = await this.userService.findOne({
       id: Number(id),
     });
+    if (!user) {
+      throw new HttpErrorByCode[404]();
+    }
     return user;
   }
 }
