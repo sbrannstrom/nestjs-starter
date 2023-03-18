@@ -4,11 +4,13 @@ import {
   Param,
   Post,
   Body,
+  UseGuards,
   // Put,
   // Delete,
 } from '@nestjs/common';
 import { IUser, UserService } from './user.service';
 import { HttpErrorByCode } from '@nestjs/common/utils/http-error-by-code.util';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -27,6 +29,7 @@ export class UserController {
     return await this.userService.createUser(payload);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   async getPostById(@Param('id') id: string): Promise<IUser> {
     const user = await this.userService.findOne({
