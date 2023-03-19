@@ -9,6 +9,7 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post()
   async login(@Request() req) {
+    console.log('req.user ==>', req.user);
     return this.authService.login(req.user);
   }
 }

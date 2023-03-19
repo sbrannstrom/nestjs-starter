@@ -8,8 +8,8 @@ import { User } from '@prisma/client';
 export class AuthService {
   constructor(private prisma: PrismaService, private jwtService: JwtService) {}
 
-  async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.prisma.user.findUnique({
+  async validateUser(email: string, pass: string): Promise<User|null> {
+    const user: User = await this.prisma.user.findUnique({
       where: {
         email,
       },
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const payload = { username: user.email, sub: user.id };
+    const payload = { username: user.email, sub: user.id, role: user.role };
     return {
       token: this.jwtService.sign(payload),
     };

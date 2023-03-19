@@ -18,6 +18,7 @@ export class UserService {
         email: true,
         name: true,
         id: true,
+        role: true
       },
     });
   }
@@ -59,10 +60,12 @@ export class UserService {
     data: Prisma.UserUpdateInput;
   }): Promise<Omit<User, 'password'>> {
     const { where, data } = params;
-    return this.prisma.user.update({
+    const user = await this.prisma.user.update({
       data,
       where,
     });
+    delete user.password;
+    return user;
   }
 
   async deleteUser(
