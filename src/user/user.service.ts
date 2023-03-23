@@ -12,13 +12,15 @@ export class UserService {
   async findOne(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
   ): Promise<Omit<User, 'password'> | null> {
-    return this.prisma.user.findUnique({
+    return await this.prisma.user.findUnique({
       where: userWhereUniqueInput,
       select: {
         email: true,
         name: true,
         id: true,
-        role: true
+        role: true,
+        organizationId: true,
+        organization: true,
       },
     });
   }
@@ -49,7 +51,7 @@ export class UserService {
     const pwdHash = await bcrypt.hash(data.password, 10);
     data.password = pwdHash;
     const createdUser = await this.prisma.user.create({
-      data,
+      data
     });
     delete createdUser.password;
     return createdUser;

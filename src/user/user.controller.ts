@@ -36,7 +36,7 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Put()
-  async updateUser(string, @Request() req, @Body() body: UpdateUserDto): Promise<IUser> {
+  async updateUser(@Request() req, @Body() body: UpdateUserDto): Promise<IUser> {
     const user = await this.userService.findOne({
       id: Number(body.id),
     });

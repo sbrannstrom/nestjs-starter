@@ -15,6 +15,9 @@ export class CreateUserDto {
 
   @IsEnum(Role)
   role?: Role;
+  
+  @IsNumber()
+  organizationId: number;
 }
 
 export class UpdateUserDto {
