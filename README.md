@@ -8,7 +8,7 @@
 Made with ♥ by Simon Brannstrom
 
 ## About
-This is a starter template for NestJS with Prisma.io, it currently contains endpoints to GET a user by ID, a POST to create a user and a POST to login a user and get a JWT in return. The GET by ID endpoint is protected by the JWT auth guard.
+This is a starter template for NestJS with Prisma.io, it currently contains endpoints to `GET` a user by ID, a `POST` to create a user and a `POST` to login a user and get a `JWT` in return. The `GET` by ID endpoint is protected by the `JWT auth guard`.
 
 ## Setup
 1. Create an `.env` file in the root of the project with the keys from `.env.example` and change out the values to reflect your setup.
