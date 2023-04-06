@@ -8,7 +8,7 @@ import { User } from '@prisma/client';
 export class AuthService {
   constructor(private prisma: PrismaService, private jwtService: JwtService) {}
 
-  async validateUser(email: string, pass: string): Promise<User|null> {
+  async validateUser(email: string, pass: string): Promise<User | null> {
     const user: User = await this.prisma.user.findUnique({
       where: {
         email,
