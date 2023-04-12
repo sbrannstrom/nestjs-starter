@@ -18,7 +18,13 @@ import { UserService } from 'src/user/user.service';
       signOptions: { expiresIn: '1h' },
     }),
   ],
-  providers: [AuthService, LocalStrategy, PrismaService, JwtStrategy, UserService],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    PrismaService,
+    JwtStrategy,
+    UserService,
+  ],
   controllers: [AuthController],
 })
 export class AuthModule {}

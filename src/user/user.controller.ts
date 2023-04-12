@@ -15,6 +15,8 @@ import { IUser, UserService } from './user.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateUserDto, UpdateUserDto } from './user.dto';
 import { Role } from '@prisma/client';
+import { Roles } from 'src/auth/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @Controller('user')
 export class UserController {
@@ -61,9 +63,10 @@ export class UserController {
     });
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.ADMIN, Role.SUPERUSER)
   @Get('/:id')
-  async getUserById(@Param('id') id: string, @Request() req): Promise<IUser> {
+  async getUserById(@Param('id') id: string): Promise<IUser> {
     const user = await this.userService.findOne({
       id: Number(id),
     });
