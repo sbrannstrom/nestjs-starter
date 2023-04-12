@@ -18,7 +18,7 @@ import { Role } from '@prisma/client';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   @Post()
   async signupUser(@Body() payload: CreateUserDto): Promise<IUser> {
@@ -36,19 +36,26 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Put()
-  async updateUser(string, @Request() req, @Body() body: UpdateUserDto): Promise<IUser> {
+  async updateUser(
+    @Request() req,
+    @Body() body: UpdateUserDto,
+  ): Promise<IUser> {
     const user = await this.userService.findOne({
       id: Number(body.id),
     });
     if (!user) {
       throw new NotFoundException();
     }
-    if (user.id !== req.user.id && req.user.role !== Role.ADMIN && req.user.role !== Role.SUPERUSER) {
+    if (
+      user.id !== req.user.id &&
+      req.user.role !== Role.ADMIN &&
+      req.user.role !== Role.SUPERUSER
+    ) {
       throw new UnauthorizedException();
     }
     return await this.userService.updateUser({
       where: {
-        id: Number(body.id)
+        id: Number(body.id),
       },
       data: body,
     });
@@ -65,6 +72,4 @@ export class UserController {
     }
     return user;
   }
-
-
 }
