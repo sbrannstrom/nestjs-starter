@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 
 export type IUser = Omit<User, 'password'>;
@@ -18,7 +18,7 @@ export class UserService {
         email: true,
         name: true,
         id: true,
-        role: true
+        role: true,
       },
     });
   }
