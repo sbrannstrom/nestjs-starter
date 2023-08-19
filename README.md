@@ -4,11 +4,13 @@
 
 # NestJS Starter Template
 
-## Creator
-Made with ♥ by Simon Brannstrom
+## Author
+Simon Brännström
 
 ## About
 This is a starter template for NestJS with Prisma.io, it currently contains endpoints to `GET` a user by ID, a `POST` to create a user and a `POST` to login a user and get a `JWT` in return. The `GET` by ID endpoint is protected by the `JWT auth guard`.
+
+The project uses SWC for ~20x times faster compile time.
 
 ## Setup
 1. Create an `.env` file in the root of the project with the keys from `.env.example` and change out the values to reflect your setup.
@@ -47,4 +49,4 @@ curl --request GET \
   --header 'Authorization: Bearer <TOKEN HERE>'
 ```
 
-That's it for now :)
+That's it for now :) more to come in the future (probably).
