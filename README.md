@@ -12,10 +12,13 @@ This is a starter template for NestJS with Prisma.io, it currently contains endp
 
 The project uses SWC for ~20x times faster compile time.
 
+It also uses [Bun](https://bun.sh) instead of Node since Bun is (as the time of writing this) stable and version 1.0.
+
 ## Setup
 1. Create an `.env` file in the root of the project with the keys from `.env.example` and change out the values to reflect your setup.
-2. Run `npm i`
-3. Run `npm run start:dev` to start the project.
+2. Install Bun, `curl -fsSL https://bun.sh/install | bash` and reload `$TERM` (instructions in terminal after first command).
+3. Install dependencies `bun install`.
+4. Run `bun run start` to start the project.
 
 ## Testing
 To create a user by using cURL, input this in a terminal:
@@ -26,7 +29,8 @@ curl --request POST \
   --data '{
 	"name": "TesterA",
 	"email": "a@a.se",
-	"password": "123"
+	"password": "123",
+  "role": "USER"
 }'
 ```
 
